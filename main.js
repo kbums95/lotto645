@@ -83,6 +83,59 @@ class LottoBall extends HTMLElement {
 customElements.define('lotto-ball', LottoBall);
 
 /**
+ * 히스토그램 데이터 및 렌더링 로직
+ */
+const frequencyData = Array.from({ length: 45 }, (_, i) => ({
+  number: i + 1,
+  count: Math.floor(Math.random() * 20) + 10 // 모의 데이터: 10~30회 사이
+}));
+
+function getBallColor(n) {
+  if (n <= 10) return 'oklch(85% 0.15 80)';
+  if (n <= 20) return 'oklch(65% 0.15 240)';
+  if (n <= 30) return 'oklch(65% 0.15 30)';
+  if (n <= 40) return 'oklch(65% 0 0)';
+  return 'oklch(65% 0.15 140)';
+}
+
+function renderHistogram() {
+  const histogram = document.getElementById('frequency-histogram');
+  const tooltip = document.getElementById('histogram-tooltip');
+  const maxCount = Math.max(...frequencyData.map(d => d.count));
+  
+  histogram.innerHTML = '';
+  
+  frequencyData.forEach(data => {
+    const container = document.createElement('div');
+    container.className = 'bar-container';
+    
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    const heightPercentage = (data.count / maxCount) * 100;
+    bar.style.height = `${heightPercentage}%`;
+    bar.style.backgroundColor = getBallColor(data.number);
+    
+    bar.addEventListener('mouseenter', (e) => {
+      tooltip.textContent = `번호 ${data.number}: ${data.count}회`;
+      tooltip.classList.remove('hidden');
+      
+      const rect = bar.getBoundingClientRect();
+      const parentRect = histogram.parentElement.getBoundingClientRect();
+      
+      tooltip.style.left = `${rect.left - parentRect.left + rect.width/2 - tooltip.offsetWidth/2}px`;
+      tooltip.style.top = `${rect.top - parentRect.top - 30}px`;
+    });
+    
+    bar.addEventListener('mouseleave', () => {
+      tooltip.classList.add('hidden');
+    });
+    
+    container.appendChild(bar);
+    histogram.appendChild(container);
+  });
+}
+
+/**
  * 메인 애플리케이션 로직
  */
 const ballContainer = document.getElementById('ball-container');
@@ -156,5 +209,6 @@ async function updateDisplay() {
 
 generateBtn.addEventListener('click', updateDisplay);
 
-// 초기 번호 생성
+// 초기 번호 생성 및 히스토그램 렌더링
 updateDisplay();
+renderHistogram();
