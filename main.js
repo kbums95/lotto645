@@ -85,10 +85,23 @@ customElements.define('lotto-ball', LottoBall);
 /**
  * 히스토그램 데이터 및 렌더링 로직
  */
-const frequencyData = Array.from({ length: 45 }, (_, i) => ({
-  number: i + 1,
-  count: Math.floor(Math.random() * 20) + 10 // 모의 데이터: 10~30회 사이
-}));
+const frequencyData = [
+  { number: 1, count: 200 }, { number: 2, count: 190 }, { number: 3, count: 202 },
+  { number: 4, count: 194 }, { number: 5, count: 178 }, { number: 6, count: 197 },
+  { number: 7, count: 200 }, { number: 8, count: 180 }, { number: 9, count: 158 },
+  { number: 10, count: 189 }, { number: 11, count: 190 }, { number: 12, count: 204 },
+  { number: 13, count: 202 }, { number: 14, count: 193 }, { number: 15, count: 192 },
+  { number: 16, count: 195 }, { number: 17, count: 202 }, { number: 18, count: 191 },
+  { number: 19, count: 189 }, { number: 20, count: 197 }, { number: 21, count: 190 },
+  { number: 22, count: 162 }, { number: 23, count: 168 }, { number: 24, count: 197 },
+  { number: 25, count: 174 }, { number: 26, count: 195 }, { number: 27, count: 211 },
+  { number: 28, count: 179 }, { number: 29, count: 170 }, { number: 30, count: 188 },
+  { number: 31, count: 198 }, { number: 32, count: 176 }, { number: 33, count: 204 },
+  { number: 34, count: 205 }, { number: 35, count: 191 }, { number: 36, count: 186 },
+  { number: 37, count: 197 }, { number: 38, count: 199 }, { number: 39, count: 191 },
+  { number: 40, count: 194 }, { number: 41, count: 165 }, { number: 42, count: 179 },
+  { number: 43, count: 198 }, { number: 44, count: 185 }, { number: 45, count: 195 }
+];
 
 function getBallColor(n) {
   if (n <= 10) return 'oklch(85% 0.15 80)';
