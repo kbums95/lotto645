@@ -162,34 +162,18 @@
   .bar {
     width: 100%;
     background: var(--primary-color);
-    border-radius: 2px 2px 0 0;
-    transition: filter 0.2s, transform 0.2s;
-    cursor: pointer;
+    border-radius: 1px 1px 0 0;
     min-height: 2px;
   }
 
-  .bar:hover {
-    filter: brightness(1.2);
-    transform: scaleX(1.5);
-    z-index: 10;
-  }
-
-  .tooltip {
-    position: absolute;
-    background: oklch(20% 0.02 200 / 90%);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    pointer-events: none;
-    z-index: 20;
-    white-space: nowrap;
-    box-shadow: var(--shadow-sm);
-    transition: opacity 0.2s;
-  }
-
-  .tooltip.hidden {
-    opacity: 0;
+  /* x-axis labels for histogram */
+  .histogram-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 2px 0;
+    font-size: 0.65rem;
+    font-weight: 600;
+    opacity: 0.5;
   }
 }
 

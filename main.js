@@ -113,13 +113,12 @@ function getBallColor(n) {
 
 function renderHistogram() {
   const histogram = document.getElementById('frequency-histogram');
-  const tooltip = document.getElementById('histogram-tooltip');
   const hotContainer = document.getElementById('hot-numbers-container');
   const maxCount = Math.max(...frequencyData.map(d => d.count));
   
   histogram.innerHTML = '';
   
-  // 히스토그램 바 렌더링
+  // 히스토그램 바 렌더링 (정적)
   frequencyData.forEach(data => {
     const container = document.createElement('div');
     container.className = 'bar-container';
@@ -130,24 +129,19 @@ function renderHistogram() {
     bar.style.height = `${heightPercentage}%`;
     bar.style.backgroundColor = getBallColor(data.number);
     
-    bar.addEventListener('mouseenter', (e) => {
-      tooltip.textContent = `번호 ${data.number}: ${data.count}회`;
-      tooltip.classList.remove('hidden');
-      
-      const rect = bar.getBoundingClientRect();
-      const parentRect = histogram.parentElement.getBoundingClientRect();
-      
-      tooltip.style.left = `${rect.left - parentRect.left + rect.width/2 - tooltip.offsetWidth/2}px`;
-      tooltip.style.top = `${rect.top - parentRect.top - 30}px`;
-    });
-    
-    bar.addEventListener('mouseleave', () => {
-      tooltip.classList.add('hidden');
-    });
-    
     container.appendChild(bar);
     histogram.appendChild(container);
   });
+
+  // 하단 번호 라벨 추가 (1, 10, 20, 30, 40, 45)
+  const labelRow = document.createElement('div');
+  labelRow.className = 'histogram-labels';
+  [1, 10, 20, 30, 40, 45].forEach(num => {
+    const span = document.createElement('span');
+    span.textContent = num;
+    labelRow.appendChild(span);
+  });
+  histogram.parentElement.appendChild(labelRow);
 
   // 가장 많이 나온 숫자(Hot Numbers) 추출 및 렌더링
   const sortedData = [...frequencyData].sort((a, b) => b.count - a.count);
