@@ -101,10 +101,12 @@ function getBallColor(n) {
 function renderHistogram() {
   const histogram = document.getElementById('frequency-histogram');
   const tooltip = document.getElementById('histogram-tooltip');
+  const hotContainer = document.getElementById('hot-numbers-container');
   const maxCount = Math.max(...frequencyData.map(d => d.count));
   
   histogram.innerHTML = '';
   
+  // 히스토그램 바 렌더링
   frequencyData.forEach(data => {
     const container = document.createElement('div');
     container.className = 'bar-container';
@@ -132,6 +134,27 @@ function renderHistogram() {
     
     container.appendChild(bar);
     histogram.appendChild(container);
+  });
+
+  // 가장 많이 나온 숫자(Hot Numbers) 추출 및 렌더링
+  const sortedData = [...frequencyData].sort((a, b) => b.count - a.count);
+  const topNumbers = [];
+  const minCountToInclude = sortedData[5]?.count || 0;
+
+  // 최소 6개를 포함하되, 동일한 빈도수가 있으면 더 포함
+  for (let i = 0; i < sortedData.length; i++) {
+    if (i < 6 || sortedData[i].count === minCountToInclude) {
+      topNumbers.push(sortedData[i]);
+    } else {
+      break;
+    }
+  }
+
+  hotContainer.innerHTML = '<div class="hot-label">가장 많이 나온 숫자 🔥</div>';
+  topNumbers.forEach(data => {
+    const ball = document.createElement('lotto-ball');
+    ball.setAttribute('number', data.number);
+    hotContainer.appendChild(ball);
   });
 }
 
