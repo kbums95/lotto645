@@ -111,67 +111,28 @@ function getBallColor(n) {
   return 'oklch(65% 0.15 140)';
 }
 
-function renderHistogram() {
-  const histogram = document.getElementById('frequency-histogram');
-  const hotContainer = document.getElementById('hot-numbers-container');
-  const maxCount = Math.max(...frequencyData.map(d => d.count));
+function renderFrequencyList() {
+  const container = document.getElementById('frequency-list-container');
   
-  histogram.innerHTML = '';
-  
-  // 히스토그램 바 렌더링 (정적)
-  frequencyData.forEach(data => {
-    const container = document.createElement('div');
-    container.className = 'bar-container';
-    
-    const bar = document.createElement('div');
-    bar.className = 'bar';
-    const heightPercentage = (data.count / maxCount) * 100;
-    bar.style.height = `${heightPercentage}%`;
-    bar.style.backgroundColor = getBallColor(data.number);
-    
-    container.appendChild(bar);
-    histogram.appendChild(container);
-  });
-
-  // 하단 번호 라벨 추가 (1, 10, 20, 30, 40, 45)
-  const labelRow = document.createElement('div');
-  labelRow.className = 'histogram-labels';
-  [1, 10, 20, 30, 40, 45].forEach(num => {
-    const span = document.createElement('span');
-    span.textContent = num;
-    labelRow.appendChild(span);
-  });
-  histogram.parentElement.appendChild(labelRow);
-
-  // 가장 많이 나온 숫자(Hot Numbers) 추출 및 렌더링
+  // 빈도수 높은 순으로 정렬
   const sortedData = [...frequencyData].sort((a, b) => b.count - a.count);
-  const topNumbers = [];
-  const minCountToInclude = sortedData[5]?.count || 0;
-
-  // 최소 6개를 포함하되, 동일한 빈도수가 있으면 더 포함
-  for (let i = 0; i < sortedData.length; i++) {
-    if (i < 6 || sortedData[i].count === minCountToInclude) {
-      topNumbers.push(sortedData[i]);
-    } else {
-      break;
-    }
-  }
-
-  hotContainer.innerHTML = '<div class="hot-label">가장 많이 나온 숫자 🔥</div>';
-  topNumbers.forEach(data => {
+  
+  container.innerHTML = '';
+  
+  sortedData.forEach(data => {
     const item = document.createElement('div');
-    item.className = 'hot-item';
-
+    item.className = 'freq-item';
+    
     const ball = document.createElement('lotto-ball');
     ball.setAttribute('number', data.number);
     
     const count = document.createElement('span');
-    count.className = 'hot-count';
+    count.className = 'freq-count';
     count.textContent = `${data.count}회`;
-
+    
     item.appendChild(ball);
     item.appendChild(count);
-    hotContainer.appendChild(item);
+    container.appendChild(item);
   });
 }
 
@@ -249,6 +210,6 @@ async function updateDisplay() {
 
 generateBtn.addEventListener('click', updateDisplay);
 
-// 초기 번호 생성 및 히스토그램 렌더링
+// 초기 번호 생성 및 빈도수 리스트 렌더링
 updateDisplay();
-renderHistogram();
+renderFrequencyList();

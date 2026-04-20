@@ -87,93 +87,41 @@
     box-shadow: var(--shadow-lg);
   }
 
-  .histogram-section {
+  .frequency-section {
     padding: var(--space-s) var(--space-m);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-s);
     margin-bottom: var(--space-s);
-    position: relative;
   }
 
-  .histogram-section h3 {
+  .frequency-section h3 {
     font-size: 0.9rem;
     font-weight: 600;
     opacity: 0.8;
     text-align: center;
-    margin-bottom: var(--space-xs);
+    margin-bottom: var(--space-m);
   }
 
-  #hot-numbers-container {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: var(--space-s);
-    padding: 12px 8px;
-    background: oklch(100% 0 0 / 5%);
-    border-radius: 12px;
+  #frequency-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+    gap: 12px 8px;
+    justify-items: center;
   }
 
-  .hot-item {
+  .freq-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
   }
 
-  .hot-count {
-    font-size: 0.7rem;
-    font-weight: 600;
-    opacity: 0.7;
-  }
-
-  .hot-label {
-    width: 100%;
-    text-align: center;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--accent-color);
-    margin-bottom: 4px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  #hot-numbers-container lotto-ball {
+  .freq-item lotto-ball {
     --size: 32px !important;
   }
 
-  #frequency-histogram {
-    height: 100px;
-    display: flex;
-    align-items: flex-end;
-    gap: 2px;
-    padding-top: 10px;
-  }
-
-  .bar-container {
-    flex: 1;
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
-    position: relative;
-  }
-
-  .bar {
-    width: 100%;
-    background: var(--primary-color);
-    border-radius: 1px 1px 0 0;
-    min-height: 2px;
-  }
-
-  /* x-axis labels for histogram */
-  .histogram-labels {
-    display: flex;
-    justify-content: space-between;
-    padding: 4px 2px 0;
+  .freq-count {
     font-size: 0.65rem;
     font-weight: 600;
-    opacity: 0.5;
+    opacity: 0.6;
   }
 }
 
