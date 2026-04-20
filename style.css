@@ -107,12 +107,25 @@
   #hot-numbers-container {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 12px;
     flex-wrap: wrap;
     margin-bottom: var(--space-s);
-    padding: 8px;
+    padding: 12px 8px;
     background: oklch(100% 0 0 / 5%);
     border-radius: 12px;
+  }
+
+  .hot-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hot-count {
+    font-size: 0.7rem;
+    font-weight: 600;
+    opacity: 0.7;
   }
 
   .hot-label {

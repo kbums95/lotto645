@@ -152,9 +152,19 @@ function renderHistogram() {
 
   hotContainer.innerHTML = '<div class="hot-label">가장 많이 나온 숫자 🔥</div>';
   topNumbers.forEach(data => {
+    const item = document.createElement('div');
+    item.className = 'hot-item';
+
     const ball = document.createElement('lotto-ball');
     ball.setAttribute('number', data.number);
-    hotContainer.appendChild(ball);
+    
+    const count = document.createElement('span');
+    count.className = 'hot-count';
+    count.textContent = `${data.count}회`;
+
+    item.appendChild(ball);
+    item.appendChild(count);
+    hotContainer.appendChild(item);
   });
 }
 
