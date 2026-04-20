@@ -1,29 +1,34 @@
-# Lotto 6/45 Application Blueprint
+# 로또 6/45 애플리케이션 블루프린트 (Lotto 6/45 Application Blueprint)
 
-## Overview
-A modern, interactive web application to generate and manage Lotto 6/45 numbers. The application focuses on a high-quality user experience with responsive design, modern CSS features, and interactive Web Components.
+## 개요 (Overview)
+로또 6/45 번호를 생성하고 관리하는 현대적이고 대화형인 웹 애플리케이션입니다. 반응형 디자인, 최신 CSS 기능 및 대화형 웹 컴포넌트를 사용하여 고품질 사용자 경험을 제공하는 데 중점을 둡니다.
 
-## Project Details & Design
-- **Architecture:** Framework-less web application using Vanilla HTML, CSS, and JavaScript.
-- **Components:** Custom Web Components (e.g., `<lotto-ball>`) for modularity and encapsulation.
-- **Styling:** 
-    - Modern CSS features: Container Queries, Cascade Layers, `:has()` selector, Logical Properties.
-    - Vibrant color palette using `oklch` for perceptual uniformity.
-    - Glassmorphism effects, multi-layered shadows, and subtle background textures.
-    - Responsive layout (mobile-first).
-- **Interactivity:** Smooth animations and feedback for number generation.
-- **Accessibility:** Adheres to A11Y standards for inclusive access.
+## 프로젝트 상세 및 디자인 (Project Details & Design)
+- **아키텍처:** 바닐라 HTML, CSS 및 JavaScript를 사용한 프레임워크 없는 웹 애플리케이션.
+- **컴포넌트:** 모듈화 및 캡슐화를 위한 사용자 정의 웹 컴포넌트(예: `<lotto-ball>`).
+- **스타일링:** 
+    - 최신 CSS 기능: 컨테이너 쿼리, 캐스케이드 레이어, `:has()` 선택기, 논리적 속성.
+    - 지각적 균일성을 위해 `oklch`를 사용한 활기찬 색상 팔레트.
+    - 글래스모피즘 효과, 다층 그림자 및 미묘한 배경 질감.
+    - 반응형 레이아웃 (모바일 우선).
+- **상호작용:** 번호 생성을 위한 부드러운 애니메이션 및 피드백.
+- **접근성:** 포용적 접근을 위한 A11Y 표준 준수.
 
-## Current State: Multi-Set Gravity Reveal
-The application now generates 5 sets of Lotto numbers with a high-impact "Gravity Drop" animation.
+## 현재 상태: 다중 세트 중력 강하 (Current State: Multi-Set Gravity Reveal)
+애플리케이션은 이제 "중력 강하(Gravity Drop)" 애니메이션과 함께 5세트의 로또 번호를 생성합니다.
 
-### Implemented Features
-- **Multi-Set Generation:** Generates 5 rows of 6 unique numbers (1-45).
-- **Gravity Drop Animation:** Balls fall from above with a bounce effect, staggered by row and individual ball index.
-- **Row Completion Effect:** Rows highlight with a subtle glow and background shift once all balls in the set have landed.
-- **Responsive Design:** Balls and rows scale down for mobile devices to ensure a clean 5-row layout.
-- **Interactive Controls:** "Generate" button is disabled during animation to prevent state conflicts, with a smooth exit animation for old results.
+### 구현된 기능 (Implemented Features)
+- **다중 세트 생성:** 6개의 고유 번호(1-45)로 구성된 5개 행을 생성합니다.
+- **중력 강하 애니메이션:** 공이 위에서 아래로 바운스 효과와 함께 떨어지며, 행과 개별 공 인덱스에 따라 시차를 두고 나타납니다.
+- **행 완료 효과:** 세트의 모든 공이 착지하면 행이 미묘한 광택과 배경 전환으로 강조됩니다.
+- **반응형 디자인:** 모바일 장치에서도 깨끗한 5행 레이아웃을 보장하도록 공과 행의 크기가 조정됩니다.
+- **대화형 제어:** 애니메이션 중에는 상태 충돌을 방지하기 위해 "생성" 버튼이 비활성화되며, 이전 결과는 부드러운 퇴장 애니메이션과 함께 사라집니다.
+- **현지화:** UI 텍스트를 한국어로 번역 완료.
 
-## Next Steps
-- **History Tracking:** Persist generated numbers to `localStorage`.
-- **Manual Selection:** Allow users to "pin" numbers they want to keep.
+## 현재 작업: 한국어 번역 (Current Task: Localization)
+- `index.html` 및 관련 컴포넌트의 모든 영문 텍스트를 한글로 변경.
+- 언어 설정을 `ko`로 업데이트.
+
+## 다음 단계 (Next Steps)
+- **기록 추적:** 생성된 번호를 `localStorage`에 저장.
+- **수동 선택:** 사용자가 보관하고 싶은 번호를 "고정"할 수 있는 기능.

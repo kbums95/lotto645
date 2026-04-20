@@ -1,6 +1,6 @@
 /**
- * LottoBall Web Component
- * Displays a lottery ball with a number and appropriate color coding.
+ * LottoBall 웹 컴포넌트
+ * 번호와 적절한 색상 코딩을 사용하여 로또 공을 표시합니다.
  */
 class LottoBall extends HTMLElement {
   constructor() {
@@ -83,7 +83,7 @@ class LottoBall extends HTMLElement {
 customElements.define('lotto-ball', LottoBall);
 
 /**
- * Main Application Logic
+ * 메인 애플리케이션 로직
  */
 const ballContainer = document.getElementById('ball-container');
 const generateBtn = document.getElementById('generate-btn');
@@ -111,7 +111,7 @@ async function updateDisplay() {
   isGenerating = true;
   generateBtn.disabled = true;
 
-  // Clear container with exit animation
+  // 퇴장 애니메이션과 함께 컨테이너 비우기
   const oldRows = ballContainer.querySelectorAll('.lotto-row');
   oldRows.forEach(row => row.classList.add('exit'));
   
@@ -122,7 +122,7 @@ async function updateDisplay() {
   
   const allSets = generateFiveSets();
 
-  // Create rows and balls with staggered delays
+  // 지연 시간을 두어 행과 공 생성
   for (let rowIndex = 0; rowIndex < allSets.length; rowIndex++) {
     const numbers = allSets[rowIndex];
     const row = document.createElement('div');
@@ -134,20 +134,20 @@ async function updateDisplay() {
       ball.setAttribute('number', numbers[ballIndex]);
       ball.className = 'gravity-drop';
       
-      // Calculate delay: Row start delay + individual ball delay
+      // 지연 시간 계산: 행 시작 지연 + 개별 공 지연
       const delay = (rowIndex * 0.4) + (ballIndex * 0.1);
       ball.style.animationDelay = `${delay}s`;
       
       row.appendChild(ball);
     }
 
-    // Add completed class after row is fully revealed
+    // 행이 완전히 나타난 후 완료 클래스 추가
     setTimeout(() => {
       row.classList.add('completed');
     }, (rowIndex * 0.4 + 1.3) * 1000);
   }
 
-  // Re-enable button after animation is mostly done
+  // 애니메이션이 거의 끝나면 버튼 다시 활성화
   setTimeout(() => {
     isGenerating = false;
     generateBtn.disabled = false;
@@ -156,5 +156,5 @@ async function updateDisplay() {
 
 generateBtn.addEventListener('click', updateDisplay);
 
-// Initial generation
+// 초기 번호 생성
 updateDisplay();
